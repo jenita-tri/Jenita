@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Portofolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <section class="login">
+    <div class="login-box">
+      <h2>Login</h2>
+      <form id="login-form" onsubmit="return checkLogin(event)">
+        <div class="input-field">
+          <label for="npm">Masukkan NPM</label>
+          <input type="text" id="npm" name="npm" placeholder="Masukkan NPM Anda" required>
+        </div>
+        <button type="submit" class="btn">Login</button>
+      </form>
+      <p id="error-message" style="color: red; display: none;">NPM yang Anda masukkan tidak valid.</p>
+    </div>
+  </section>
+
+  <script>
+    // Daftar NPM yang valid
+    const validNPMs = ['F1A024021', 'F1A024027', 'F1A024032'];
+
+    function checkLogin(event) {
+      event.preventDefault();  // Mencegah form untuk melakukan refresh halaman
+
+      const npm = document.getElementById('npm').value;
+
+      if (validNPMs.includes(npm)) {
+        // Jika NPM valid, setel status login di localStorage
+        localStorage.setItem('isLoggedIn', 'true');
+        // Alihkan ke halaman utama portofolio
+        window.location.href = "home.html"; // Ganti dengan nama file portofolio Anda
+      } else {
+        // Jika NPM tidak valid, tampilkan pesan error
+        document.getElementById('error-message').style.display = 'block';
+      }
+    }
+  </script>
+
+</body>
+</html>
